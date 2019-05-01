@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vue 테스트</title>
+<!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id='first'>
+	<h2>{{title}}</h2>
+	<div v-html="title"></div><!-- inner Html 태그가 적용됨 -->
+	<div v-text="title"></div><!-- inner Text 태그가 적용안됨 -->
+	<div>{{title}}</div><!-- inner Text 태그가 적용안됨 -->
+</div>
+<script type="text/javascript">
+	var model = {title: '<h2>SSAFY</h2>'};
+	var xx = {
+		el: '#first', // element의 약자, id가 first인 태그를 찾아라
+		data: model // model을 넣어도 됨
+	};
+	var first = new Vue(xx); // 뷰의 인스턴스를 생성
+	Vue.config.devtools = false;
+	// false : devtool 사용불가 // 상용버전의 기본값 false
+	// true : devtool 사용가능 // 개발용의 기본값 true
+	
+	
+	
+	// vue.js의 문법
+	// Interpolation {{}}
+	// Directive v-속성
+	// component Tag
+</script>
+
+
+	 
+</body>
+</html>
+
+
+

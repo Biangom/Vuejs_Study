@@ -1,0 +1,44 @@
+<!-- 5.1 -->
+<!-- 자바스크립트와 함께 쓰는 방법!!! -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SSAFY</title>
+<style type="text/css">
+#first div {
+	color: blue;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="first">
+		<div v-html="title"></div>
+	</div>
+	<div id="second">
+		<div onclick="hello('안녕하세요');">자바스크립트 이벤트 : 클릭하세요</div>
+	</div>
+	<input id="third" onclick="hello2(this);">
+
+	<script type="text/javascript">
+		var model = {title : '<h2>SSAFY</h2>'};
+		var first = new Vue({
+			el : '#first',//어떠한 유효 범위에서 쓸꺼야? id가 first인 범위
+			data : model,		//값을 어떻게 치환 할꺼냐
+		});	
+		function hello(d){	
+			first.$data.title=d ;	//괄호 안에 값으로 치환해라	//$data는 생략 가능 	
+		}
+		function hello2(d){
+			first.title = d.value;
+			console.log(d.value);
+			if(document.getElementById('third').value == d.value){
+				alert(d.value);
+			};
+		}
+		
+	Vue.config.devtools = true;
+	</script>
+</body>
+</html>

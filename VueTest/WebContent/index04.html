@@ -1,0 +1,57 @@
+<!-- 5.1 -->
+<!-- 생명주기 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SSAFY</title>
+<style type="text/css">
+#first div {
+	color: blue;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="first">
+	<h3 v-html="title"></h3>
+</div>
+<script type="text/javascript">
+	var model = {title : 'SSAFY'};
+	var first = new Vue({
+		el : '#first',
+		data : model,
+		//콜벡 메소드를 달아보자 ***
+		beforeCreate : function(){ //beforeCreate : 인스턴스가 준비되고 가장먼저 호출되는 콜벡 메서드 , this 를 사용할 수 없다.	
+			console.log('beforeCreate : ' + this.title)
+		},
+		
+		create : function(){	//create: this, data, methods 속성이 정의됨
+			console.log('create : ' + this.title)
+		},
+			
+		beforeMount : function(){ //beforeMount: 바꿀려는 작업 = mount / 준비된 markup 속성을 render() 함수로 변환후 지정한 위치에 부착하기 직전에 호출 
+			console.log('beforeMount : ' + this.title)
+		},
+
+		mounted: function(){	//mounted: 준비된 markup 속성을 render() 함수로 변환후 지정한 위치에 부착한뒤  호출 
+								//	=> dom요소에 직접 접근 가능 => 화면 변경 로직을 수행 가능
+								//	실제 작업은 이 mounted 이후에 
+			console.log('mounted : ' + this.title)
+		},
+
+		beforeUpdate: function(){	//beforeUpdate: 변경작업이 일어 났을 때 ex)watch 
+			console.log('beforeUpdate : ' + this.title)
+		},
+
+		updated: function(){	//updated: 
+			console.log('updated : ' + this.title)
+		},
+	});
+</script>
+
+<script type="text/javascript">
+	Vue.config.devtools = true;
+</script>
+</body>
+</html>
