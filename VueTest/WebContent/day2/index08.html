@@ -1,0 +1,32 @@
+<!-- 5.2 -->
+<!-- index7 복사해서 고대로  -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{message}}</p>
+		<button v-on:click="reverseMsg">문자열을 역순</button>
+	</div>
+<script type="text/javascript">
+	new Vue({
+		el : '#app',
+		data :{
+			message : "hello Vue"
+		},
+		computed: {
+			reverseMsg : function(){	//내가 가지고 있는 메세지를 역순으로 출력하자!
+				this.message = 	this.message.split('').reverse().join('');	//빈문자열로 쪼개면 하나씩 됨 => 역순으로 바꿔 => 합쳐				
+				return this.message;
+			}
+		},
+	});
+	Vue.config.devtools = true;
+</script>
+</body>
+</html>

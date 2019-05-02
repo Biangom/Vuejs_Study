@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="VueTest" path="/VueTest" reloadable="true" source="org.eclipse.jst.jee.server:VueTest"/><Context docBase="hwvue02_서울_06_김성식" path="/hwvue02_서울_06_김성식" reloadable="true" source="org.eclipse.jst.jee.server:hwvue02_서울_06_김성식"/><Context docBase="vue01_서울_06_김성식" path="/vue01_서울_06_김성식" reloadable="true" source="org.eclipse.jst.jee.server:vue01_서울_06_김성식"/></Host>
+      <Context docBase="VueTest" path="/VueTest" reloadable="true" source="org.eclipse.jst.jee.server:VueTest"/><Context docBase="hwvue02_서울_06_김성식" path="/hwvue02_서울_06_김성식" reloadable="true" source="org.eclipse.jst.jee.server:hwvue02_서울_06_김성식"/><Context docBase="vue01_서울_06_김성식" path="/vue01_서울_06_김성식" reloadable="true" source="org.eclipse.jst.jee.server:vue01_서울_06_김성식"/><Context docBase="vue02_서울_06_김성식" path="/vue02_서울_06_김성식" reloadable="true" source="org.eclipse.jst.jee.server:vue02_서울_06_김성식"/><Context docBase="hwvue03_서울_06_김성식" path="/hwvue03_서울_06_김성식" reloadable="true" source="org.eclipse.jst.jee.server:hwvue03_서울_06_김성식"/></Host>
     </Engine>
   </Service>
 </Server>

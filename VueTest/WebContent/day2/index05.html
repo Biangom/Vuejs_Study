@@ -1,0 +1,48 @@
+<!-- 5.2 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="mydirective">
+		<div v-mystyle="{color:'blue',fontsize:'20px', border:'1px', borderStyle : 'dotted'}">월요일</div>	<!-- => 모델한테 데이터 보냄 -->
+		<div v-mystyle="{color:'red',fontsize:'20px', border:'1px', borderStyle : 'solid'}">화요일</div>
+	</div>
+<script type="text/javascript">
+	Vue.directive("mystyle", 	//mystyle 함수를 만들어서
+		{ bind(elm, binding, nodename){	//거기에 쓸 내용들을 채움
+			elm.style.color = binding.value.color;
+			elm.style.fontSize = binding.value.fontSize;
+			elm.style.border = binding.value.border;
+			elm.style.borderStyle = binding.value.borderStyle;
+			elm.style.textAlign = "left";
+			console.log("elm === "+elm);
+			console.log("binding === "+binding);
+			console.log("nodename === "+nodename);
+		}
+	});
+	var mydirectiv = new Vue({
+		el : '#mydirective'		//범위 지정
+	});
+	Vue.config.devtools = true;
+	
+	
+	
+</script>
+</body>
+</html>
+<!-- 
+	디렉티브 문법 정리
+	v-if :		true 일 경우 태그 실행, false 일 경우  주석 처리 되버림
+	v-show :	true 일 경우 태그 실행, false 일 경우  display none 처리
+	v-for : 	반복 태그 실행
+	v-bind : 	뷰의 데이터 속성과 html속성을 연결	// v-bind:id == :id으로 줄여 쓰기도 (간소화하는것은 비추)
+	v-on : 		화면 요소에 이벤트 처리 v-on: click 클릭 이벤트 == @click으로 줄여 쓰기도(간소화하는것은 비추)
+	v-model : 	양방향 바인딩, 뷰에 보이는것과 모델의 값, 주로 form 요소에서 많이 사용
+	v-html : 	inner HTML 바인딩한 문자열의 태그를 반영
+	v-text : 	inner Text 바인딩한 문자열에 태그가 있어도 문자열로만 취급
+ -->

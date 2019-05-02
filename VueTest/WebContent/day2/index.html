@@ -1,0 +1,30 @@
+<!-- 5.2 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="first">
+	<svg width="200" height="100">	<!-- 무슨 태그임? -->
+		<my-svg ccx="50" ccy="50" cr="40"></my-svg>
+		<my-svg ccx="150" ccy="50" cr="20"></my-svg>
+	</svg>
+</div>
+<script type="text/javascript">
+	var first = new Vue({
+		el : '#first',
+		components: {
+			'my-svg' : {
+				props : ['ccx','ccy','cr'],	// 이런 단어가 나온애에대가 template을 적용해라
+				template : '<circle :cx="ccx" :cy="ccy" :r="cr" stroke="green" stroke-width="4" fill="yellow"/>'
+			}
+		}
+	});
+	Vue.config.devtools = true;	//devtool 옵션 키기
+</script>
+</body>
+</html>

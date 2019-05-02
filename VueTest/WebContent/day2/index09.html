@@ -1,0 +1,33 @@
+<!-- 5.2 -->
+<!-- v-bind를 써서 css를 적용할지 안할지 ~ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+	.common{margin:auto; text-align: center; font-family:serif; font-size:20px;}
+	.sat{color:blue; border-style:dotted;}
+	.sun{color:red; border-style:solid;}
+</style>
+<!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="mydirective">
+		<div class="common" v-bind:class="{sat:isSat}">토요일</div>	<!-- v-bind : 속성 값을 바꿔줌 // sat:true => sat가 적용됨 -->
+		<div class="common" v-bind:class="{sun:isSun}">일요일</div>
+	</div>
+	
+<script type="text/javascript">
+	var model = {
+		isSat:true, isSun:true
+	};
+	var mydirective = new Vue({
+		el : "#mydirective",
+		data : model
+	});
+	Vue.config.devtools = true;
+</script>
+</body>
+</html>

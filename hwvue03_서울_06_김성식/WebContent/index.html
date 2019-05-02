@@ -1,0 +1,73 @@
+<!-- 5.2 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id ="app">
+
+	<h2> SSAFY </h2>
+	<hr>
+	<template v-for="item in names">
+		<label><input type="checkbox" name="box" v-bind:value="item" v-model="reg_names"/>{{item}}</label>
+	</template>
+	<br>
+	<template id="checkboxArea" v-if='moreZero(reg_names)'>
+		알러지 요인들 : <span v-html="reg_names"></span>
+	</template>
+	<hr>
+
+	<template v-for="num in numbers">
+		<label><input type="radio" name="box" v-bind:value="num" v-model="reg_numbers"/>{{num}}</label>
+	</template>
+		<br>
+	<template id="radioboxArea" v-if='moreZero(reg_numbers)'>
+		선택 : <span v-html="reg_numbers"></span>
+	</template>
+	<hr>
+
+	<select v-model="reg_groups" multiple>
+		<template v-for="ele in groups">
+			<option v-bind:value ="ele" >{{ele}}</option>
+		</template>
+	</select>
+	<br>
+	<template id="listboxArea" v-if='moreZero(reg_groups)'>
+		Selected : <span v-html="reg_groups"></span>
+	</template>
+	
+</div>
+
+<script type="text/javascript">
+new Vue({
+	el: '#app',
+	data : {
+		//flag : false 하면 주석처리되어 안나옴
+		flag : true,
+		reg_names : [],
+		names : ['Jack', 'John', 'Mike'],
+		
+		reg_numbers : [],
+		numbers : ['One','Two'],
+
+		reg_groups : [],
+		groups : ['A','B','C'],
+		uid: 10
+	},
+	methods : {
+		popupAlert : function(num, $event) {
+			console.log(event);
+			return alert("경고창 표시 : " + num + event);
+		},
+		moreZero: function (arr) {
+			return arr.length > 0
+		}
+	},
+});
+</script>
+</body>
+</html>

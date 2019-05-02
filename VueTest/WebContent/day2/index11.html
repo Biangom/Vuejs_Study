@@ -1,0 +1,73 @@
+<!-- 5.2 -->
+<!-- axios -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+	axios 엑시오스:Vue 커뮤니티에서 가장많이 사용되는 http 통신 라이브러리
+		공식 깃허브 레파지터리에 자세한 안내 설명 참고
+		설치 방법 NPM, CDN 두가지 방법
+		 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		 
+		사용방법
+		axios.get('URL 주소').then(성공시 실행내용).catch(에러발생시 실행내용).then(항상 실행)
+		axios.post('URL 주소').then(성공시 실행내용).catch(에러발생시 실행내용).then(항상 실행)
+		axios({옵션을 지정})
+ -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="second">
+		<h2>SSAFY SAFE FOOD</h2>
+	</div>
+	<div id="app">
+		<section v-if='errored'>
+			<p>Error in ajax transport</p>
+		</section>
+		<section v-else>
+			<table id="tid" border="1px">
+				<tr>
+					<td>분류</td>
+					<td>이름</td>
+					<td>이미지</td>
+				</tr>
+				<div v-else>
+					<tr v-for="emp in info">
+						<td v-html="emp.productGb"></td>
+						<td v-html="emp.prdlstNm"></td>
+						<td><img v-bind:src="emp.imgurl1"></td>
+					</tr>
+				</div>
+			</table>
+		</section>
+	</div>
+<script type="text/javascript">
+	new Vue({
+		el : '#app',
+		data (){
+			return{
+				info: [],	//info라는 변수 초기화
+				loading: true,
+				errored: false
+			}
+		},
+		//mounted 되고 나야 위와같은 속성들애도 들어 갈수 있다.
+// 		mounted : function(){ 생략가능!
+		mounted (){
+			axios
+				.get('./food.json')
+				.then(response => (this.info = response.data))	//자바의 람다식과 같음, 매개 변수로 받아온값을 this.info에 넣어라
+				.catch(error => {								//다른대서 읽어온 데이터를 넣는다.
+					console.log(error);
+					//에러나면 에러다 표시해주고 싶어
+					this.errored = true;
+				})
+				.finally(() => this.loading = false);	//성공하고나 실패하거나 항상 실행 // 값을 못받으면 걍 ()
+		}
+	});
+</script>
+</body>
+</html>
