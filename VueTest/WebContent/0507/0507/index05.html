@@ -1,0 +1,95 @@
+
+<!-- 5.7 -->
+<!-- 라웃팅 : 페이지간의 이동 방식, 
+	이동할 페이지 : 라웃터  // 넘어갈 라웃팅 부분에 표현을 해라~,  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="./table.css" />
+<title>SSAFY</title>
+<script src="https://unpkg.com/vue"></script>	<!-- Vue 최신 버전 반영하는 cdn -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>	<!-- 지금은 안쓰는데 axios -->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id='app'>
+	<div class='headtitle'>
+		<h2>SSAFY HRM</h2>
+	</div>
+	<div class='search_box'>
+		<router-link to="/route1">사원추가</router-link>	<!-- 이동할 페이지 <a href="" 와 비슷한 느낌 -->
+		<router-link to="/route2">이름으로 찾기</router-link>
+		<router-link to="/route3">아이디로 찾기</router-link>
+		<router-link to="/route4">모든사원 보기</router-link>
+	</div>
+
+	<router-view></router-view>	<!-- 갱신할 화면 영역 -->
+	<!-- 
+		라우터 : 웹페이지간의 화면 이동 방식을 좀 간단히 하려고
+	 -->
+
+</div>
+<script type="text/x-template" id="addhrmtemplate">
+	<div>
+		사원추가 화면
+	<div>
+</script>
+<script type="text/x-template" id="namehrmtemplate">
+	<div>
+		이름으로 찾기 화면
+	<div>
+</script>
+<script type="text/x-template" id="idhrmtemplate">
+	<div>
+		아이디로 찾기 화면
+	<div>
+</script>
+<script type="text/x-template" id="listhrmtemplate"> 
+ 	<div>
+ 		모든사원 보기 화면
+ 	</div>
+</script>
+
+<script type="text/javascript">
+	//라우팅 (routing) : 웹페이지간의 이동 방법
+	// SPA 에서 요청 경로에 따라 다른 템플릿을 보여주고자 할 때
+	// SPA (Single Page Application) : 페이지를 이동할 때마다 서버에 웹페이지를 요청하여 새로 갱신하는 것이 아니라,
+	//	미리 해당 페이지들을 받아놓고 , 페이지 이동시 클라이언트의 라우팅 기능을 이용하여 화면을 갱신하는 패턴을 적용한 어플리케이션
+	//	=> 처음에 연결시 다 만들어 논 페이지르 연결해서 클라이언트에서 다 받아 놓는거야
+	
+	var addhrm = Vue.component('addhrm',{		//템플릿을 컴포넌트로 묶어줌
+	    template: '#addhrmtemplate'
+	});
+	var namehrm = Vue.component('namehrm',{
+	    template: '#namehrmtemplate'
+	});
+	var idhrm = Vue.component('idhrm',{
+	    template: '#idhrmtemplate'
+	});
+	var listhrm = Vue.component('listhrm',{
+	    template: '#listhrmtemplate'
+	});
+	
+	const Route1 = { template: addhrmtemplate}	//어떤 템플릿을 컴포넌트로 정의하겠다.
+	const Route2 = { template: namehrmtemplate }
+	const Route3 = { template: idhrmtemplate}
+	const Route4 = { template: listhrmtemplate }
+	
+	const routes = [					//최종적으로 여기서, 각 url에 표시할 컴포넌트 연결, 어떤 컴포넌트를 쓸지 결정
+	   { path: '/route1', component: Route1 },	//탬플릿을 담아놓은 컴포넌트
+	   { path: '/route2', component: Route2 },
+	   { path: '/route3', component: Route3 },
+	   { path: '/route4', component: Route4 }
+	];
+	const router = new VueRouter({	// vuerouter라는 객체가 있어야돼
+	   routes 			//routes : url과 컴포넌트를 연결한 부분을 넣어 줘야해
+	});
+	var App=new Vue({	//router객체를 넣어 줘야해, Vue 인스턴스 생성, router 추가
+	  el: '#app',
+	  router
+	})
+ </script>
+</body>
+</html>
